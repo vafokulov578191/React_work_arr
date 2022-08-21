@@ -1,23 +1,52 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from "react";
 import './App.css';
+import User from "./Components/User";
+import Form from "./Components/Form";
+
 
 function App() {
+  let [arr, Setarr] = useState([
+  {
+    id: 1,
+    name: 'Javascript',
+    Title: 'Facebook'
+  },
+  {
+    id: 2,
+    name: 'Alex',
+    Title: 'Adams'
+  },
+  {
+    id: 2,
+    name: 'Mike',
+    Title: 'Mikels'
+  }
+  ])
+
+  let [name, Setname] = useState('')
+  let [Title, Setitle] = useState('')
+  
+
+  useEffect(() => {
+    // console.log(name);
+  },[name])
+
+  useEffect(() => {
+    // console.log(Title);
+  },[Title])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="form">
+        <Form arr={arr} onChangearr={Setarr} name={name} onChangename={Setname} Title={Title} onChangeTitle={Setitle} />
+        <input type="text"  />
+      </div>
+        <div className="user">
+          {
+            arr.map((item, index) => <User key={index} {...item}/>)
+          }
+        </div>
     </div>
   );
 }
